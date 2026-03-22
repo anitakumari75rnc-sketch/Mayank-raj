@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  
+  --color-surface: #f5fafc;
+  --color-surface-container-low: #edf5f8;
+  --color-surface-container-lowest: #ffffff;
+  --color-primary: #006973;
+  --color-primary-container: #89e9f6;
+  --color-on-surface: #293438;
+  --color-on-surface-variant: #556165;
+  --color-outline-variant: #a7b4b8;
+  
+  --shadow-ambient: 0 20px 40px rgba(0, 105, 115, 0.05);
+  --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+}
+
+@layer base {
+  body {
+    @apply bg-surface text-on-surface font-sans antialiased;
+  }
+}
+
+.glass-widget {
+  @apply bg-surface-container-lowest/70 backdrop-blur-[20px] border border-outline-variant/10 shadow-glass;
+}
+
+.icy-gradient {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-container) 100%);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

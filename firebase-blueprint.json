@@ -1,0 +1,42 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Stores user-specific settings and profile information.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "The unique ID of the user." },
+        "displayName": { "type": "string", "description": "The user's display name." },
+        "email": { "type": "string", "description": "The user's email address." },
+        "photoURL": { "type": "string", "description": "The user's profile picture URL." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "When the profile was created." }
+      },
+      "required": ["uid", "email"]
+    },
+    "ClothingItem": {
+      "title": "ClothingItem",
+      "description": "Represents a single piece of clothing in the user's closet.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique ID for the item." },
+        "userId": { "type": "string", "description": "Owner's user ID." },
+        "category": { "type": "string", "enum": ["Tops", "Bottoms", "Shoes", "Accessories", "Outerwear"], "description": "The type of clothing." },
+        "warmthLevel": { "type": "integer", "description": "1 (Light) to 5 (Heavy)." },
+        "imageUrl": { "type": "string", "description": "URL of the item's photo." },
+        "name": { "type": "string", "description": "Optional name for the item." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "When the item was added." }
+      },
+      "required": ["userId", "category", "warmthLevel", "imageUrl"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profile documents."
+    },
+    "/users/{userId}/closet/{itemId}": {
+      "schema": "ClothingItem",
+      "description": "The user's collection of clothing items."
+    }
+  }
+}
